@@ -15,7 +15,7 @@ const myAssist = [];//Kosongin Aja Ini Gaguna Kntl
 const myBot = ['Taro Mid Bot Lu Disini Etot'];
 var banList = [];//Banned list
 var vx = {};var midnornama,pesane,kickhim;var waitMsg = "no";//DO NOT CHANGE THIS
-var komenTL = "AutoLike by Bee\nline://ti/p/~kobe2k17"; //Comment for timeline
+var komenTL = "AutoLike by Bayu Cogan\nhttp://line.me/ti/p/GFfHuTXfFp"; //Comment for timeline
 var bcText = "Masukan teks untuk broadcast";
 var limitposts = '10'; //Output timeline post
 
@@ -156,7 +156,7 @@ class LINE extends LineAPI {
 
         }
 
-		if(operation.type == 11 && this.stateStatus.lockupdategroup == 1){//update group (open qr)
+		if(operation.type == 11 && this.stateStatus.lockqr == 1){//update group (open qr)
 		    let seq = new Message();
 			seq.to = operation.param1;
             if(isAdmin(operation.param2))
@@ -175,7 +175,7 @@ class LINE extends LineAPI {
 
           }
 
-          if(operation.type == 11 && this.stateStatus.lockupdategroup == 1){
+          if(operation.type == 11 && this.stateStatus.lockqr == 1){
 			let seq = new Message();
 			seq.to = operation.param1;
             if(isAdmin(operation.param2))
@@ -194,7 +194,7 @@ class LINE extends LineAPI {
 
          }
 
-           if(operation.type == 11 && this.stateStatus.lockupdategroup == 1) { //ada update
+           if(operation.type == 11 && this.stateStatus.lockqr == 1) { //ada update
            // op1 = group nya
            // op2 = yang 'nge' update
             if(isAdmin(operation.param2))
@@ -213,7 +213,7 @@ class LINE extends LineAPI {
 
            }
 
-        if(operation.type == 11 && this.stateStatus.lockupdategroup == 1) {
+        if(operation.type == 11 && this.stateStatus.lockqr == 1) {
             if(isAdmin(operation.param2))
             {
             }
@@ -234,7 +234,7 @@ class LINE extends LineAPI {
         }
 
 
-          if(operation.type == 15 && this.stateStatus.bmsg == 1) {
+          if(operation.type == 15 && this.stateStatus.greting == 1) {
             if(isBanned(operation.param2))
             {
             }
@@ -254,7 +254,7 @@ class LINE extends LineAPI {
 
             }
 
-            if(operation.type == 17 && this.stateStatus.bmsg == 1) {
+            if(operation.type == 17 && this.stateStatus.greting == 1) {
             if(isBanned(operation.param2))
             {
             }
@@ -268,17 +268,17 @@ class LINE extends LineAPI {
             {          
                let kam = new Message();
                kam.to = operation.param1;
-               kam.text = "Selamat Datang, Jangan Lupa Berbaur Yah ^_^"
+               kam.text = "Selamat Datang, Jangan Lupa gift Yah ^_^"
                this._client.sendMessage(0, kam);
               }
 
            }
 
-           if(operation.type == 16) {
-             let itil = new Message();
-             itil.to = operation.param1;
-             itil.text = "Terima Kasih Telah Invite Saya Di Group Anda ^_^\n\nSilahkan Ketik [Tab:Help] Untuk Mengetahui Command Bot Kami.\n\n-тєαм αиυ вσт-"
-             this._client.sendMessage(0, itil);
+           //if(operation.type == 16) {
+             //let itil = new Message();
+             //itil.to = operation.param1;
+             //itil.text = "Terima Kasih Telah Invite Saya Di Group Anda ^_^\n\nSilahkan Ketik [Tab:Help] Untuk Mengetahui Command Bot Kami.\n\n-тєαм αиυ вσт-"
+             //this._client.sendMessage(0, itil);
            }
 
            if(operation.type == 19) {
@@ -523,8 +523,6 @@ class LINE extends LineAPI {
             }
             //this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}`);
 			this._sendMessage(seq,isinya);
-        } else {
-            this._sendMessage(seq,`Mohon Maaf Anda Bukan Staff Atau Admin~`);
         }}
     }
 
@@ -612,7 +610,7 @@ class LINE extends LineAPI {
         const cox = textMessages.split(' ');
 
 
-        if(cmd == 'Tab:Cancel') {
+        if(cmd == 'shark:Cancel') {
             if(payload == 'group') {
                 let groupid = await this._getGroupsInvited();
 
@@ -624,7 +622,7 @@ class LINE extends LineAPI {
                 this.cancelAll(seq.to);
             }
 
-		if(vx[1] == "tab:addcontact" && seq.from == vx[0] && waitMsg == "yes"){
+		if(vx[1] == "shark:addcontact" && seq.from == vx[0] && waitMsg == "yes"){
 			let panjang = txt.split("");
 			if(txt == "cancel"){
 				vx[0] = "";vx[1] = "";waitMsg = "no";vx[2] = "";vx[3] = "";
@@ -696,12 +694,12 @@ class LINE extends LineAPI {
 			}else{
 				let bang = new Message();
 				bang.to = seq.to;
-				bang.text = "# How to Tab:AddContact\n-Kirim Contact Orang Yang Mau Di Add\n-Kirim Mid Orang Yang Mau Di Add\n-Atau Tag Orang Yang Mau Di Add\n\n# Note :\nDisarankan Untuk Add Contact Khusus Staff Dan Dilarang Untuk Sembarangan Menggunakan Command Ini !";
+				bang.text = "# How to shark:AddContact\n-Kirim Contact Orang Yang Mau Di Add\n-Kirim Mid Orang Yang Mau Di Add\n-Atau Tag Orang Yang Mau Di Add\n\n# Note :\nDisarankan Untuk Add Contact Khusus Staff Dan Dilarang Untuk Sembarangan Menggunakan Command Ini !";
 				this._client.sendMessage(0,bang);
 			}
 		}
 
-		if(txt == "tab:addcontact" && isAdmin(seq.from)) {
+		if(txt == "shark:addcontact" && isAdmin(seq.from)) {
 			if(vx[2] == null || typeof vx[2] === "undefined" || !vx[2]){
 			    waitMsg = "yes";
 			    vx[0] = seq.from;vx[1] = txt;vx[2] = "arg1";
@@ -712,21 +710,18 @@ class LINE extends LineAPI {
 			}
 		}
 
-      if(txt == 'tab:addcontact') {
+      if(txt == 'shark:addcontact') {
             if(isAdmin(seq.from))
             {
             }
             else if(isBot(seq.from))
             {
-            }
-          else
-            {
-this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
+		    
             }
 
       }
 
-      if(vx[1] == "tab:cekid" && seq.from == vx[0] && waitMsg == "yes"){
+      if(vx[1] == "shark:cekid" && seq.from == vx[0] && waitMsg == "yes"){
 			let panjang = txt.split("");
 			if(txt == "cancel"){
 				vx[0] = "";vx[1] = "";waitMsg = "no";vx[2] = "";vx[3] = "";
@@ -756,7 +751,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			}
 		}
 
-		if(txt == "tab:cekid" && !isBanned(seq.from)) {
+		if(txt == "shark:cekid" && !isBanned(seq.from)) {
 			if(vx[2] == null || typeof vx[2] === "undefined" || !vx[2]){
 			    waitMsg = "yes";
 			    vx[0] = seq.from;vx[1] = txt;vx[2] = "arg1";
@@ -768,7 +763,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			}
 		}
 
-		if(txt == "tab:cekid" && isBanned(seq.from)) {
+		if(txt == "shark:cekid" && isBanned(seq.from)) {
          this._sendMessage(seq,"Mohon Maaf Anda Users Blacklist Or Banned~");
        }
 
@@ -816,11 +811,11 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 				this._client.sendMessage(0, kirim);
 				this._client.sendMessage(0, bang);
 			}else{
-				this._sendMessage(seq,"# How to Tab:Msg\nKirim Kontak orang yang mau dikirimkan pesan !");
+				this._sendMessage(seq,"# How to shark:Msg\nKirim Kontak orang yang mau dikirimkan pesan !");
 			}
 		}
 
-      if(txt == "tab:msg" && isStaff(seq.from)) {
+      if(txt == "shark:msg" && isStaff(seq.from)) {
 			if(vx[2] == null || typeof vx[2] === "undefined" || !vx[2]){
 			    waitMsg = "yes";
 			    vx[0] = seq.from;vx[1] = txt;vx[3] = "mid";
@@ -834,7 +829,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 		}
 
 
-      if(txt == "tab:msg" && isAdmin(seq.from)) {
+      if(txt == "shark:msg" && isAdmin(seq.from)) {
 			if(vx[2] == null || typeof vx[2] === "undefined" || !vx[2]){
 			    waitMsg = "yes";
 			    vx[0] = seq.from;vx[1] = txt;vx[3] = "mid";
@@ -847,7 +842,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			}
 		}
 
-       if(txt == "tab:msg"){
+       if(txt == "shark:msg"){
             if(isAdmin(seq.from))
             {
             }
@@ -864,7 +859,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 
       }
 
-      if(txt == 'tab:ban' && this.sendBlacklist == 0 && isAdmin(seq.from)){
+      if(txt == 'shark:ban' && this.sendBlacklist == 0 && isAdmin(seq.from)){
          this.sendBlacklist = 1;
          this._sendMessage(seq,'Kirim Contact Untuk Nge Banned~')
        }
@@ -876,7 +871,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
           this._sendMessage(seq,'Sudah Bossku');
         }
 
-      if(txt == 'tab:ban' && this.sendBlacklist == 0 && isStaff(seq.from)){
+      if(txt == 'shark:ban' && this.sendBlacklist == 0 && isStaff(seq.from)){
          this.sendBlacklist = 1;
          this._sendMessage(seq,'Kirim Contact Untuk Nge Banned~')
        }
@@ -888,7 +883,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
           this._sendMessage(seq,'Sudah Bossku');
         }
 
-       if(txt == "tab:ban"){
+       if(txt == "shark:ban"){
             if(isAdmin(seq.from))
             {
             }
@@ -905,7 +900,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 
       }
 
-        if(txt == 'tab:unban' && this.sendBlacklist == 0 && isAdmin(seq.from))
+        if(txt == 'shark:unban' && this.sendBlacklist == 0 && isAdmin(seq.from))
 {
            this.sendBlacklist = 2;
            this._sendMessage(seq,'Kirim Contact Unban Seseorang~')
@@ -930,7 +925,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
     }
 }
 
-        if(txt == 'tab:unban' && this.sendBlacklist == 0 && isStaff(seq.from))
+        if(txt == 'shark:unban' && this.sendBlacklist == 0 && isStaff(seq.from))
 {
            this.sendBlacklist = 2;
            this._sendMessage(seq,'Kirim Contact Unban Seseorang~')
@@ -955,7 +950,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
     }
 }
 
-       if(txt == "tab:unban"){
+       if(txt == "shark:unban"){
             if(isAdmin(seq.from))
             {
             }
@@ -973,7 +968,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
       }
 
 
-		if(txt == "tab:banlist"){
+		if(txt == "shark:banlist"){
 			seq.text = "[TAB List Users Banned]\n";
 			for(var i = 0; i < banList.length; i++){
 			    let orangnya = await this._getContacts([banList[i]]);
@@ -982,7 +977,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			this._sendMessage(seq,seq.text);
 		}
 
-		if(cox[0] == "Tab:BroadcastGroup" && isAdmin(seq.from) && cox[1]){
+		if(cox[0] == "shark:BroadcastGroup" && isAdmin(seq.from) && cox[1]){
             let listMID = [];
             let bcText = textMessages.split(" ").slice(1).toString().replace(/,/g , " ");
             let bcm = new Message();
@@ -997,7 +992,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
                     this._client.sendMessage(0, bcm);
 	        	}
             }
-        }else if(cox[0] == "Tab:BroadcastGroup" && isAdmin(seq.from) &&!cox[1]){this._sendMessage(seq,"# How to broadcast:\nbroadcast yourtexthere");
+        }else if(cox[0] == "shark:BroadcastGroup" && isAdmin(seq.from) &&!cox[1]){this._sendMessage(seq,"# How to broadcast:\nbroadcast yourtexthere");
         }
 
         if(cox[0] == "Tab:BroadcastGroup") {
@@ -1023,7 +1018,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			if(ax.preventJoinByTicket === true){ax.preventJoinByTicket = false;await this._client.updateGroup(0, ax);}else{}
 		}
 
-		if(vx[1] == "tab:add:staff" && seq.from == vx[0] && waitMsg == "yes"){
+		if(vx[1] == "shark:add:staff" && seq.from == vx[0] && waitMsg == "yes"){
 			let panjang = txt.split("");
 			if(txt == "cancel"){
 				vx[0] = "";vx[1] = "";waitMsg = "no";vx[2] = "";vx[3] = "";
@@ -1069,7 +1064,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			}
 		}
 
-		if(txt == "tab:add:staff" && isAdmin(seq.from)) {
+		if(txt == "shark:add:staff" && isAdmin(seq.from)) {
 			if(vx[2] == null || typeof vx[2] === "undefined" || !vx[2]){
 			    waitMsg = "yes";
 			    vx[0] = seq.from;vx[1] = txt;
@@ -1082,7 +1077,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			}
 		}
 
-       if(txt == "tab:add:staff"){
+       if(txt == "shark:add:staff"){
             if(isAdmin(seq.from))
             {
             }
@@ -1096,7 +1091,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 
       }
 
-		if(vx[1] == "tab:del:staff" && seq.from == vx[0] && waitMsg == "yes"){
+		if(vx[1] == "shark:del:staff" && seq.from == vx[0] && waitMsg == "yes"){
 			let panjang = txt.split("");
 			if(txt == "cancel"){
 				vx[0] = "";vx[1] = "";waitMsg = "no";vx[2] = "";vx[3] = "";
@@ -1149,14 +1144,14 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			}
 		}
 
-		if(txt == "tab:del:staff" && isAdmin(seq.from)){
+		if(txt == "shark:del:staff" && isAdmin(seq.from)){
 			if(vx[2] == null || typeof vx[2] === "undefined" || !vx[2]){
 			    waitMsg = "yes";
 			    vx[0] = seq.from;vx[1] = txt;
 				seq.text = "";
 				for(var i = 0; i < myStaff.length; i++){
 					let orangnya = await this._getContacts([myStaff[i]]);
-				    seq.text += "[TAB Staff List]\n\n☞ "+orangnya[0].displayName+"";
+				    seq.text += "SHARK Staff List]\n\n☞ "+orangnya[0].displayName+"";
 				}
 				this._sendMessage(seq,seq.text);
 			    this._sendMessage(seq,"Deleted staff siapa ?");
@@ -1167,7 +1162,7 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 		      }
        }
 
-       if(txt == "tab:del:staff"){
+       if(txt == "shark:del:staff"){
             if(isAdmin(seq.from))
             {
             }
@@ -1181,8 +1176,8 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 
       }
 
-		if(txt == "tab:stafflist"){
-			seq.text = "[TAB List Staff]\n";
+		if(txt == "shark:stafflist"){
+			seq.text = "[SHARK List Staff]\n";
 			for(var i = 0; i < myStaff.length; i++){
 			    let staff = await this._getContacts([myStaff[i]]);
             seq.text += "\n☞ "+staff[0].displayName+"";
@@ -1190,17 +1185,17 @@ this._sendMessage(seq,"Mohon Maaf Anda Bukan Admin");
 			this._sendMessage(seq,seq.text);
 		}
 
-        if(txt == 'tab:infogroup') {
+        if(txt == 'shark:ginfo') {
            this._sendMessage(seq, 'Nama Group :\n'+ginfo.name+'\n\nGroup ID :\n'+ginfo.id+'\n\nPembuat Group :\n'+ginfo.creator.displayName);
          }
 
-        if(txt == 'response name') {
+        if(txt == 'responsename') {
            if(isAdmin(seq.from) || isStaff(seq.from)) {
             this._sendMessage(seq, 'ȶɛǟʍ ǟռʊ ɮօȶ Hadir 􀂳');
            }
         }
 
-       if(txt == "response name"){
+       if(txt == "responsename"){
             if(isAdmin(seq.from))
             {
             }
