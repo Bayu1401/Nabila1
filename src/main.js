@@ -86,7 +86,7 @@ class LINE extends LineAPI {
             if(waitMsg == "yes" && operation.message.from == vx[0] && this.stateStatus.mute != 1){
 				this.textMessage(txt,message,message.text)
 			}else if(this.stateStatus.mute != 1){this.textMessage(txt,message);
-			}else if(txt == "Tab:Unmute" && isAdmin(operation.message.from) && this.stateStatus.mute == 1){
+			}else if(txt == "shark:unmute" && isAdmin(operation.message.from) && this.stateStatus.mute == 1){
 			    this.stateStatus.mute = 0;
 			    this._sendMessage(message,"ヽ(^。^)ノ")
 		    }else{console.info("Bot Off");}
@@ -1212,7 +1212,7 @@ class LINE extends LineAPI {
 
       }
 
-        if(txt == 'tab:help') {
+        if(txt == 'shark:help') {
            this._sendMessage(seq, '==============================\ntαв αll cσmmαnd\n==============================\n☞ Myid\n☞ Tab:Gift\n☞ Halo\n☞ TAB:Help\n☞ Tab:CreatorBot\n☞ TAB:InfoGroup\n☞ Tab:GroupCreator\n☞ Tab:Tag\n☞ Tab:Speed\n☞ Baca Read\n☞ Lihat Pembacaan Read\n☞ Tab:Status/Setting\n☞ Hapus Pembacaan Read\n☞ Tab:Cancel\n☞ Tab:Banlist\n☞ Tab:CekID\n☞ Tab:StaffList\n☞ Hak Admin Dan Staff\n\n==============================\nтαв ѕтαff ¢σммαи∂\n==============================\n☞ Response Name\n☞ Tab:OpenUrl\n☞ Tab:CloseUrl\n☞ TAB:Bye\n☞ Tab:spam\n☞ Kick On/Off\n☞ Cancel On/Off\n☞ LockInvite On/Off\n☞ LockUpdateGroup On/Off\n☞ LockJoin On/Off\n☞ LockCancel On/Off\n☞ Tab:Kick「@」\n☞ Tab:Msg\n☞ Tab:Ban\n☞ Tab:Unban\n☞ Bmsg On/Off\n\n==============================\nтαв α∂мιи ¢σммαи∂\n==============================\n☞ Tab:Mute\n☞ Tab:Unmute\n☞ Tab:add:staff\n☞ Tab:del:staff\n☞ Tab:BroadcastGroup [Text]\n☞ Tab:AddContact\n☞ Tab:CreateGroup [Jumlah]-[Nama]/[Mid]\n\n==============================฿Ɏ ₮Ɇ₳₥ ₳₦Ʉ ฿Ø₮\n==============================');
         }
 
@@ -1220,11 +1220,11 @@ class LINE extends LineAPI {
             this._sendMessage(seq, 'Staff Bisa Memakai Command Yang Di Staff Dan All Tetapi Tidak Bisa Memakai Command Yang Di Admin Serta Tidak Bisa Inv Bot Ke Group Mana Pun (Isitilah Nya Kek CreatorGroup Siri Lah Tpi Tidak Bisa Change, Kalo Mao Change Perlu Minta Ke Admin)\n\nKalo Admin Bisa Memakai Command All, Staff, Admin Dan Membawa Bot Kemana Pun Tanpa Limit (Kecuali Situ Limit Inv)\n\n-тєαм αиυ вσт-');
          }
 
-         if(txt == 'tab:status') {
+         if(txt == 'shark:status') {
             this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}\n\n*Note: Jika Status Menunjukkan 0 Itu Berarti Off Dan Jika Status Menunjukkan 1 Itu Berarti On.\n\n-тєαм αиυ вσт-`);
           }
 
-		if(txt == "tab:setting"){
+		if(txt == "shark:setting"){
 			this.setState(seq,1)
 		}
 
@@ -1239,7 +1239,7 @@ class LINE extends LineAPI {
            this._client.sendMessage(3, seq);
           }
 
-          if(txt == 'tab:gift') {
+          if(txt == 'gift') {
              seq.contentType = 9
              seq.contentMetadata = {'PRDID': 'a0768339-c2d3-4189-9653-2909e9bb6f58','PRDTYPE': 'THEME','MSGTPL': '5'};
              this._client.sendMessage(1, seq);
@@ -1257,14 +1257,13 @@ class LINE extends LineAPI {
 
 
 
-        if(txt == 'tab:speed') {
+        if(txt == 'speed') {
             const curTime = (Date.now() / 1000);
-            await this._sendMessage(seq,'Tunggu Hentai....');
             const rtime = (Date.now() / 1000) - curTime;
             await this._sendMessage(seq, `${rtime} second`);
         }
 
-        if(txt == 'tab:tag') {
+        if(txt == 'tag') {
 let { listMember } = await this.searchGroup(seq.to);
      const mentions = await this.mention(listMember);
         seq.contentMetadata = mentions.cmddata; await this._sendMessage(seq,mentions.names.join(''))
@@ -1276,8 +1275,8 @@ let { listMember } = await this.searchGroup(seq.to);
             //})
         //}
 
-        if(txt == 'baca read') {
-            this._sendMessage(seq, `Pembacaan Read Dimulai Dari Sekarang.`);
+        if(txt == 'lurk on') {
+            this._sendMessage(seq, `lurking on...`);
             this.removeReaderByGroup(seq.to);
         }
 
@@ -1288,7 +1287,7 @@ let { listMember } = await this.searchGroup(seq.to);
         }  
 
 
-        if(txt == 'lihat pembacaan read'){
+        if(txt == 'lurk result'){
 
             let rec = await this.recheck(this.checkReader,seq.to);
             const mentions = await this.mention(rec);
@@ -1297,15 +1296,14 @@ let { listMember } = await this.searchGroup(seq.to);
             
         }
 
-         if (txt == 'tab:groupcreator') {
+         if (txt == 'gcreator') {
              let gcreator = await this._getGroup(seq.to);
              seq.contentType = 13;
              seq.contentMetadata = {mid: gcreator.creator.mid, displayName: gcreator.creator.displayName};
              this._client.sendMessage(1, seq);
          }
 
-        if(txt == 'tab:creatorbot') {
-           this._sendMessage(seq, 'My Creator Is Bee\nId Line : http://line.me/ti/p/~kobe2k17\n\n-тєαм αиυ вσт-');
+        if(txt == 'creatorbot') {
            seq.contentType=13;
            seq.contentMetadata = { mid: 'ub4974c6489c969402713a974b568ee9e' };
            this._client.sendMessage(1, seq);
@@ -1325,12 +1323,12 @@ let { listMember } = await this.searchGroup(seq.to);
             this.checkReader = [];
         }
 
-		if(txt == "tab:mute" && isAdmin(seq.from)) {
+		if(txt == "shark:mute" && isAdmin(seq.from)) {
 			this.stateStatus.mute = 1;
 			this._sendMessage(seq,"(*´﹃｀*)")
 		}
 
-       if(txt == "tab:mute" || txt == "tab:unmute"){
+       if(txt == "shark:mute" || txt == "tab:unmute"){
             if(isAdmin(seq.from))
             {
             }
@@ -1344,7 +1342,7 @@ let { listMember } = await this.searchGroup(seq.to);
 
       }
 
-       if(txt == "tab:openurl" || txt == "tab:closeurl" || txt == "tab:spam" || txt == "tab:bye"){
+       if(txt == "shark:openurl" || txt == "shark:closeurl" || txt == "shark:spam" || txt == "shark:bye"){
             if(isAdmin(seq.from))
             {
             }
@@ -1361,7 +1359,7 @@ let { listMember } = await this.searchGroup(seq.to);
 
       }
 
-        const action = ['lockinvite on','lockinvite off','lockupdategroup on','lockupdategroup off','lockjoin on','lockjoin off','lockcancel on','lockcancel off','kick on','kick off','cancel on','cancel off','bmsg on','bmsg off']
+        const action = ['lockinvite on','lockinvite off','lockqr on','lockqr off','lockjoin on','lockjoin off','lockcancel on','lockcancel off','kick on','kick off','cancel on','cancel off','greting on','greting off']
         if(action.includes(txt)) {
             this.setState(seq)
         }
@@ -1370,12 +1368,11 @@ let { listMember } = await this.searchGroup(seq.to);
             this._sendMessage(seq,`MID Anda : ${seq.from}`);
         }
 
-        const joinByUrl = ['tab:openurl','tab:closeurl'];
+        const joinByUrl = ['shark:openurl','shark:closeurl'];
       if(joinByUrl.includes(txt) && isAdmin(seq.from)) {
-            this._sendMessage(seq,`Tunggu Sebentar ...`);
             let updateGroup = await this._getGroup(seq.to);
             updateGroup.preventJoinByTicket = true;
-            if(txt == 'tab:openurl') {
+            if(txt == 'shark:openurl') {
                 updateGroup.preventJoinByTicket = false;
                 const groupUrl = await this._reissueGroupTicket(seq.to)
                 this._sendMessage(seq,`Link Group = line://ti/g/${groupUrl}`);
@@ -1387,7 +1384,7 @@ let { listMember } = await this.searchGroup(seq.to);
             this._sendMessage(seq,`Tunggu Sebentar ...`);
             let updateGroup = await this._getGroup(seq.to);
             updateGroup.preventJoinByTicket = true;
-            if(txt == 'tab:openurl') {
+            if(txt == 'shark:openurl') {
                 updateGroup.preventJoinByTicket = false;
                 const groupUrl = await this._reissueGroupTicket(seq.to)
                 this._sendMessage(seq,`Link Group = line://ti/g/${groupUrl}`);
@@ -1407,7 +1404,7 @@ let { listMember } = await this.searchGroup(seq.to);
               let reply_jawab=(optreply_jawab[random3]);                            this._sendMessage(seq, `${reply_jawab}`);
               }
 
-        if(cmd == 'Tab:Kick' && isStaff(seq.from)){
+        if(cmd == 'shark:Kick' && isStaff(seq.from)){
            let target = payload.replace('@','');
            let group = await this._getGroups([seq.to]);
            let gm = group[0].members;
@@ -1420,7 +1417,7 @@ let { listMember } = await this.searchGroup(seq.to);
                this._kickMember(seq.to,[target]);
         }
 
-        if(cmd == 'Tab:Kick' && isAdmin(seq.from)){
+        if(cmd == 'shark:Kick' && isAdmin(seq.from)){
            let target = payload.replace('@','');
            let group = await this._getGroups([seq.to]);
            let gm = group[0].members;
@@ -1433,13 +1430,13 @@ let { listMember } = await this.searchGroup(seq.to);
                this._kickMember(seq.to,[target]);
         }
 
-        if(cmd == 'Tab:spam' && isStaff(seq.from)) {
+        if(cmd == 'shark:spam' && isStaff(seq.from)) {
             for(var i= 0; i < 10;  i++) {
                this._sendMessage(seq, 'I Love Hentai~');
         }
     }
 
-        if(cmd == 'Tab:spam' && isAdmin(seq.from)) {
+        if(cmd == 'shark:spam' && isAdmin(seq.from)) {
             for(var i= 0; i < 10;  i++) {
                this._sendMessage(seq, 'I Love Hentai~');
         }
@@ -1447,7 +1444,7 @@ let { listMember } = await this.searchGroup(seq.to);
 
 //Tab:CreateGroup <jumlah>-<NamaGrup>/<mid>
 //Tab:CreateGroup 100-NamaGrupnya/midkorban
-        if(cmd == 'Tab:CreateGroup' && isAdmin(seq.from)) { 
+        if(cmd == 'shark:CreateGroup' && isAdmin(seq.from)) { 
             const [ j, u ] = payload.split('-');
             const [ n, m ] = u.split('/');
             for (var i = 0; i < j; i++) {
@@ -1455,7 +1452,7 @@ let { listMember } = await this.searchGroup(seq.to);
             }
         }
         
-        if(txt == 'tab:bye') {
+        if(txt == 'shark:bye') {
            if(isAdmin(seq.from) || isStaff(seq.from)){
           let txt = await this._sendMessage(seq, 'Kami Dari TeamAnuBot (TAB) Terima Kasih Atas Groupnya Dan Kami Izin Leave~');
           this._leaveGroup(seq.to);
