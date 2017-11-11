@@ -12,7 +12,7 @@ const myAdmin = ['Taro Mid Lu Disini Goblok'];
 
 const myAssist = [];//Kosongin Aja Ini Gaguna Kntl
 
-const myBot = ['Taro Mid Bot Lu Disini Etot'];
+const myBot = ['Taro Mid Bot Lu Disini Ettot'];
 var banList = [];//Banned list
 var vx = {};var midnornama,pesane,kickhim;var waitMsg = "no";//DO NOT CHANGE THIS
 var komenTL = "AutoLike by Bee\nline://ti/p/~kobe2k17"; //Comment for timeline
