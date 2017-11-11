@@ -1176,7 +1176,7 @@ class LINE extends LineAPI {
 
       }
 
-		if(txt == "shark:stafflist" && isAdminOrStaff(seq.from){
+		if(txt == "shark:stafflist"){
 			seq.text = "[❖ѕтaғғ lιѕт❖]\n";
 			for(var i = 0; i < myStaff.length; i++){
 			    let staff = await this._getContacts([myStaff[i]]);
@@ -1221,11 +1221,11 @@ class LINE extends LineAPI {
             this._sendMessage(seq, 'Staff Bisa Memakai Command Yang Di Staff Dan All Tetapi Tidak Bisa Memakai Command Yang Di Admin Serta Tidak Bisa Inv Bot Ke Group Mana Pun (Isitilah Nya Kek CreatorGroup Siri Lah Tpi Tidak Bisa Change, Kalo Mao Change Perlu Minta Ke Admin)\n\nKalo Admin Bisa Memakai Command All, Staff, Admin Dan Membawa Bot Kemana Pun Tanpa Limit (Kecuali Situ Limit Inv)\n\n-тeaм ѕнarĸ вфт-');
          }
 
-         if(txt == 'shark:status' && isAdminOrStaff) {
+         if(txt == 'shark:status') {
             this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}\n\n*Note: Jika Status Menunjukkan 0 Itu Berarti Off Dan Jika Status Menunjukkan 1 Itu Berarti On.\n\n-тeaм ѕнarĸ вфт-`);
           }
 
-		if(txt == "shark:setting" && isAdminOrStaff(seq.from){
+		if(txt == "shark:setting"){
 			this.setState(seq,1)
 		}
 
@@ -1240,7 +1240,7 @@ class LINE extends LineAPI {
            this._client.sendMessage(3, seq);
           }
 
-          if(txt == 'gift' && isAdminOrStaff(seq.from) {
+          if(txt == 'gift') {
              seq.contentType = 9
              seq.contentMetadata = {'PRDID': 'a0768339-c2d3-4189-9653-2909e9bb6f58','PRDTYPE': 'THEME','MSGTPL': '5'};
              this._client.sendMessage(1, seq);
@@ -1258,13 +1258,13 @@ class LINE extends LineAPI {
 
 
 
-        if(txt == 'speed' && isAdminOrStaff(seq.from) {
+        if(txt == 'speed') {
             const curTime = (Date.now() / 1000);
             const rtime = (Date.now() / 1000) - curTime;
             await this._sendMessage(seq, `${rtime} second`);
         }
 
-        if(txt == 'tag' && isAdminOrStaff(seq.from) {
+        if(txt == 'tag') {
 let { listMember } = await this.searchGroup(seq.to);
      const mentions = await this.mention(listMember);
         seq.contentMetadata = mentions.cmddata; await this._sendMessage(seq,mentions.names.join(''))
