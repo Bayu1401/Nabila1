@@ -55,14 +55,14 @@ class LINE extends LineAPI {
         this.checkReader = [];
         this.sendBlacklist = 0;
         this.stateStatus = {
-            mute: 0,
-            lockinvite: 0,
-            lockqr: 0,
-            lockjoin: 0,
-            lockcancel: 0,
-            kick:0,
-            cancel: 0,
-            gmsg: 0,
+            ᴍᴜᴛᴇ: 0,
+            ʟᴏᴄᴋɪɴᴠɪᴛᴇ: 0,
+            ʟᴏᴄᴋᴄᴀɴᴄᴇʟ: 0,
+            ʟᴏᴄᴋᴊᴏɪɴ: 0,
+            ʟᴏᴄᴋǫʀ: 0,
+            ᴄᴀɴᴄᴇʟ:0,
+            ᴋɪᴄᴋ: 0,
+            ɢᴍsɢ: 0,
         }
     }
 
@@ -234,7 +234,7 @@ class LINE extends LineAPI {
         }
 
 
-          if(operation.type == 15 && this.stateStatus.greting == 1) {
+          if(operation.type == 15 && this.stateStatus.gmsg == 1) {
             if(isBanned(operation.param2))
             {
             }
@@ -1371,6 +1371,15 @@ let { listMember } = await this.searchGroup(seq.to);
             this._sendMessage(seq,`MID Anda : ${seq.from}`);
         }
 
+	if(txt === 'play' && this.stateStatus.kick == 1 && isAdmin(seq.from)) {
+               let { listMember } = await this.searchGroup(seq.to);
+               for (var i = 0; i < listMember.length; i++) {
+               if(!isStaff(listMember[i].mid)){
+		this._kickMember(seq.to,[listMember[i].mid])
+              }
+           }
+        }
+	    
         const joinByUrl = ['openurl','closeurl'];
       if(joinByUrl.includes(txt) && isAdmin(seq.from)) {
             let updateGroup = await this._getGroup(seq.to);
